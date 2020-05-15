@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useSubscription, useMutation } from "@apollo/react-hooks";
-import gql from "graphql-tag";
 import "./Chatroom.scss";
 
 function updateScroll() {
@@ -8,34 +6,8 @@ function updateScroll() {
   element.scrollTop = element.scrollHeight;
 }
 
-const MESSAGE_SUBSCRIPTION = gql`
-  subscription messageSubscription($chatroomId: Int!) {
-    messages(where: { chatroom_id: { _eq: $chatroomId } }) {
-      id
-      text
-      user
-    }
-  }
-`;
-
-const SEND_MESSAGE = gql`
-  mutation sendMessage($chatroomId: Int, $text: String, $user: String) {
-    insert_messages(
-      objects: { chatroom_id: $chatroomId, text: $text, user: $user }
-    ) {
-      affected_rows
-    }
-  }
-`;
-
 const Chatroom = ({ chatroomId, handleBack }) => {
   const [currentMessage, setCurrentMessage] = useState("");
-  const { loading, error, data } = useSubscription(MESSAGE_SUBSCRIPTION, {
-    variables: {
-      chatroomId,
-    },
-  });
-  const [sendMessage] = useMutation(SEND_MESSAGE);
 
   const user = window.localStorage.getItem("USER");
 

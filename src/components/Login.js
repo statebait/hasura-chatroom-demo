@@ -1,23 +1,7 @@
 import React, { useState } from "react";
-import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
-
-const ADD_USER = gql`
-  mutation addUser($user: String) {
-    insert_users(objects: { username: $user }) {
-      affected_rows
-    }
-  }
-`;
 
 const Login = ({ handleLogin }) => {
   const [value, setValue] = useState("");
-
-  const [addUser, { error }] = useMutation(ADD_USER);
-
-  if (error) {
-    return <div>Something went wrong...Please refresh the page.</div>;
-  }
 
   return (
     <div>
@@ -26,16 +10,6 @@ const Login = ({ handleLogin }) => {
         onSubmit={(e) => {
           e.preventDefault();
           if (value) {
-            addUser({
-              variables: {
-                user: value,
-              },
-            })
-              .then((data) => {
-                window.localStorage.setItem("USER", value);
-                handleLogin();
-              })
-              .catch((err) => console.log(err));
           }
         }}
       >
