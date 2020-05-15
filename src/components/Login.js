@@ -3,6 +3,9 @@ import React, { useState } from "react";
 const Login = ({ handleLogin }) => {
   const [value, setValue] = useState("");
 
+  if (error) {
+    return <div>Something went wrong...Please refresh the page.</div>;
+  }
   return (
     <div>
       <h2>Enter your nickname</h2>

@@ -2,6 +2,9 @@ import React from "react";
 import "./ChatroomList.scss";
 
 const ChatroomList = ({ handleChatroomClick }) => {
+  if (loading) return <div>Loading...</div>;
+  else if (error) return <div>Something went wrong</div>;
+
   return (
     <div>
       <h1>Chatrooms</h1>
