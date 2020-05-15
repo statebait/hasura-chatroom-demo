@@ -1,0 +1,26 @@
+.message {
+  text-align: left;
+  margin: 20px;
+}
+
+.message-list {
+  width: 500px;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.input-box {
+  margin-top: 20px;
+  border: 2px solid limegreen;
+  background: transparent;
+  padding: 10px;
+  color: limegreen;
+}
+
+.hidden-button {
+  display: none;
+}
+
+.back {
+  cursor: pointer;
+}

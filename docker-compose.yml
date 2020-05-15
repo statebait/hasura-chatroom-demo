@@ -1,0 +1,17 @@
+version: "3.6"
+services:
+  db:
+    image: postgres
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+  graphql-engine:
+    image: hasura/graphql-engine:v1.2.1
+    ports:
+      - 8080:8080
+    depends_on:
+      - "db"
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@db:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
