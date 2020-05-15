@@ -11,6 +11,7 @@ services:
       - 8080:8080
     depends_on:
       - "db"
+    restart: on-failure
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@db:5432/postgres
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
