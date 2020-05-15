@@ -12,15 +12,11 @@ const wsLink = new WebSocketLink({
   },
 });
 
-// Create an http link:
 const httpLink = new HttpLink({
   uri: "http://localhost:8080/v1/graphql",
 });
 
-// using the ability to split links, you can send data to each link
-// depending on what kind of operation is being sent
 const link = split(
-  // split based on operation type
   ({ query }) => {
     const definition = getMainDefinition(query);
     return (
@@ -33,12 +29,10 @@ const link = split(
 );
 
 const cache = new InMemoryCache();
+
 export const client = new ApolloClient({
-  // Provide required constructor fields
   cache: cache,
   link,
-
-  // Provide some optional constructor fields
   name: "react-web-client",
   version: "1.3",
   queryDeduplication: false,
