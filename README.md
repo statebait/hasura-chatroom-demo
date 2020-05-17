@@ -297,3 +297,8 @@ const [sendMessage] = useMutation(SEND_MESSAGE);
 ```
 
 Vola! You should have a working application!
+Alternatively you can go to the README.md of the [tutorial](https://github.com/statebait/hasura-chatroom-demo/tree/tutorial) branch for the tutorial.
+
+## License
+
+This project is licensed under the MIT License - Copyright (c) 2020 Mohamed Shadab
